@@ -73,6 +73,6 @@ Shield.prototype.launch = function(context) {
 // Restart
 Shield.prototype.restart = function() {
     this.group.callAll('kill');
-    this.spacing = 2500;
-    this.timer = this.game.time.now + this.spacing;
+    this.spacing = 10000;
+    this.timer = this.game.time.now + this.spacing + 5000;
 };

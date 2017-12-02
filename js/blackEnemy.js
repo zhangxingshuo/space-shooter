@@ -12,7 +12,7 @@ function BlackEnemy(game) {
     this.health = this.defaultHealth;
     this.defaultLifetime = 250;
     this.lifetime = this.defaultLifetime;
-    this.defaultNumBullets = 3;
+    this.defaultNumBullets = 1;
     this.numBullets = this.defaultNumBullets;
     this.missileExplosions = null;
     this.tutorialText = null;

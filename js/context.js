@@ -8,6 +8,9 @@ function Context(game, physics, player, asteroids, greenEnemies, blueEnemies, re
     this.fireButton = null;
     this.score = 0;
     this.scoreText = null;
+    this.chain = 0;
+    this.multiplier = 1;
+    this.multiplierText = null;
     this.healthText = null;
     this.explosions = null;
     this.gameOver = null;
@@ -59,6 +62,10 @@ Context.prototype.create = function() {
     this.gameOver.y -= this.gameOver.height / 2;
     this.gameOver.x -= this.gameOver.width / 2;
     this.gameOver.visible = false;
+    this.multiplierText = this.game.add.text(this.game.width / 2, 10, 'Multiplier : x ' + this.multiplier);
+    this.multiplierText.font = this.font;
+    this.multiplierText.fill = '#ffffff';
+    this.multiplierText.x -= this.multiplierText.width / 2;
 
     //  An explosion pool
     this.explosions = this.game.add.group();
@@ -103,6 +110,8 @@ Context.prototype.update = function() {
 
         this.scoreText.setText('Score : ' + '0'.repeat(8 - this.score.toString().length) + this.score);
         this.healthText.setText('Health : ' + this.player['sprite'].health);
+        this.multiplier = Math.min(Math.floor(this.chain / 3) + 1, 32);
+        this.multiplierText.setText('Multiplier : x ' + this.multiplier);
 
         // Game over
         if (!this.player['sprite'].alive && this.gameOver.visible == false) {
@@ -151,4 +160,5 @@ Context.prototype.bringToTop = function() {
     this.game.world.bringToTop(this.scoreText);
     this.game.world.bringToTop(this.gameOver);
     this.game.world.bringToTop(this.healthText);
+    this.game.world.bringToTop(this.multiplierText);
 };

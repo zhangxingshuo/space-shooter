@@ -83,7 +83,8 @@ Physics.prototype.hitEnemy = function(enemy, bullet) {
     enemy.health--;
     if (enemy.health == 0) {
         enemy.kill();
-        this.score += enemy.damageAmount;
+        this.chain += 1;
+        this.score += enemy.damageAmount * this.multiplier;
 
         var explosion = this.explosions.getFirstExists(false);
         explosion.reset(enemy.body.x + enemy.body.halfWidth, enemy.body.y + enemy.body.halfHeight);
@@ -105,7 +106,8 @@ Physics.prototype.hitEnemyPass = function(enemy, bullet) {
         bullet.kill();
     }
     enemy.kill();
-    this.score += enemy.damageAmount;
+    this.chain += 1;
+    this.score += enemy.damageAmount * this.multiplier;
 
     var explosion = this.explosions.getFirstExists(false);
     explosion.reset(enemy.body.x + enemy.body.halfWidth, enemy.body.y + enemy.body.halfHeight);
@@ -129,6 +131,7 @@ Physics.prototype.collidePlayer = function(player, enemy) {
             player.kill();
         }
         this.player['invincible'] = true;
+        this.chain = 0;
 
         this.explosionSound.play();
     }
@@ -148,6 +151,7 @@ Physics.prototype.hitPlayer = function(player, bullet) {
             player.kill();
         }
         this.player['invincible'] = true;
+        this.chain = 0;
 
         this.explosionSound.play();
     }

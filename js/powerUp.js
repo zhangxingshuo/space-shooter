@@ -73,6 +73,6 @@ PowerUp.prototype.launch = function(context) {
 // Restart
 PowerUp.prototype.restart = function() {
     this.group.callAll('kill');
-    this.spacing = 2000;
+    this.spacing = 10000;
     this.timer = this.game.time.now + this.spacing;
 };
