@@ -62,10 +62,10 @@ Context.prototype.create = function() {
     this.gameOver.y -= this.gameOver.height / 2;
     this.gameOver.x -= this.gameOver.width / 2;
     this.gameOver.visible = false;
-    this.multiplierText = this.game.add.text(this.game.width / 2, 10, 'Multiplier : x ' + this.multiplier);
+    this.multiplierText = this.game.add.text(this.game.width / 16 + this.scoreText.width, 10, '  x ' + this.multiplier);
     this.multiplierText.font = this.font;
     this.multiplierText.fill = '#ffffff';
-    this.multiplierText.x -= this.multiplierText.width / 2;
+    // this.multiplierText.x -= this.multiplierText.width / 2;
 
     //  An explosion pool
     this.explosions = this.game.add.group();
@@ -111,7 +111,7 @@ Context.prototype.update = function() {
         this.scoreText.setText('Score : ' + '0'.repeat(8 - this.score.toString().length) + this.score);
         this.healthText.setText('Health : ' + this.player['sprite'].health);
         this.multiplier = Math.min(Math.floor(this.chain / 3) + 1, 32);
-        this.multiplierText.setText('Multiplier : x ' + this.multiplier);
+        this.multiplierText.setText('  x ' + this.multiplier);
 
         // Game over
         if (!this.player['sprite'].alive && this.gameOver.visible == false) {

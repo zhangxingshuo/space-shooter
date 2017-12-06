@@ -207,8 +207,8 @@ Player.prototype.fireBullet = function() {
                 break;
 
             case 6:
-                this.firePenetratingBullet(300, -10); // double special fire
-                this.firePenetratingBullet(300, 10);
+                this.firePenetratingBullet(150, -10); // double special fire
+                this.firePenetratingBullet(150, 10);
                 break;
 
             case 7:
@@ -265,7 +265,7 @@ Player.prototype.fireSingleBullet = function(spacing, xoffset=0, yoffset=0) {
 // Fire single normal bullet in a spread pattern
 Player.prototype.fireSpreadBullets = function(numBullets, xoffset=0, yoffset=0) {
     var BULLET_SPEED = 600;
-    var BULLET_SPACING = Math.max(500, 200 + numBullets*25);
+    var BULLET_SPACING = Math.min(500, 200 + numBullets*25);
 
     for (var i = 0; i < numBullets; i++) {
         var bullet = this.blueBulletPool.getFirstExists(false);
